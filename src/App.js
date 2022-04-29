@@ -6,6 +6,7 @@ import Register from './components/Register/Register.jsx';
 import Login from './components/pages/Login/Login';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import PageNotFound from './components/pages/PageNotFound/PageNotFound.jsx';
 function App() {
   
   return (
@@ -16,6 +17,11 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login />} />
+
+
+
+        {/* 404 page route/ Page not found route */}
+        <Route path='*' element={<PageNotFound />} />
       </Routes>
     </div>
   );

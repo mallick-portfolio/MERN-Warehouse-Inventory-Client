@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { signOut } from 'firebase/auth';
+import { signOut } from "firebase/auth";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import {
   LoginIcon,
@@ -7,7 +7,7 @@ import {
   UserAddIcon,
   XIcon,
 } from "@heroicons/react/outline";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "./../../../firebase.init";
 const navigation = [
@@ -22,6 +22,12 @@ function classNames(...classes) {
 }
 
 export default function Header() {
+  const navigate = useNavigate();
+  const handleLogOut = () => {
+    signOut(auth);
+    navigate("/");
+  };
+
   const [user] = useAuthState(auth);
   return (
     <Disclosure as="nav" className="bg-gray-800">
@@ -133,11 +139,8 @@ export default function Header() {
                         <Menu.Item>
                           {({ active }) => (
                             <button
-                            onClick={()=> signOut(auth)}
-                              className={classNames(
-                                active ? "bg-gray-100" : "",
-                                "block px-4 py-2 text-sm text-gray-700"
-                              )}
+                              onClick={handleLogOut}
+                              className="px-4 py-2 w-auto text-sm text-gray-700"
                             >
                               Sign out
                             </button>

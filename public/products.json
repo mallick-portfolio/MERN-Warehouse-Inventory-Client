@@ -1,0 +1,59 @@
+[
+  {
+    "id": 1,
+    "name": "Pepper Barbecue Chicken",
+    "email": "xxx@gmail.com",
+    "quantity": 10,
+    "prices":300,
+    "category": "nonveg",
+    "image": "https://i.ibb.co/0209JyW/c4.png",
+    "description": "Pepper Barbecue Chicken",
+    "supplier": "Kamal"
+  },
+  {
+    "id": 2,
+    "name": "Pepper Barbecue Chicken",
+    "email": "xxx@gmail.com",
+    "quantity": 10,
+    "prices":300,
+    "category": "nonveg",
+    "image": "https://i.ibb.co/0209JyW/c4.png",
+    "description": "Pepper Barbecue Chicken",
+    "supplier": "Kamal"
+  },
+  {
+    "id": 3,
+    "name": "Pepper Barbecue Chicken",
+    "email": "xxx@gmail.com",
+    "quantity": 10,
+    "prices":300,
+    "category": "nonveg",
+    "image": "https://i.ibb.co/0209JyW/c4.png",
+    "description": "Pepper Barbecue Chicken",
+    "supplier": "Kamal"
+  },
+  {
+    "id": 4,
+    "name": "Pepper Barbecue Chicken",
+    "email": "xxx@gmail.com",
+    "quantity": 10,
+    "prices":300,
+    "category": "nonveg",
+    "image": "https://i.ibb.co/0209JyW/c4.png",
+    "description": "Pepper Barbecue Chicken",
+    "supplier": "Kamal"
+  },
+  {
+    "id": 5,
+    "name": "Pepper Barbecue Chicken",
+    "email": "xxx@gmail.com",
+    "quantity": 10,
+    "prices":300,
+    "category": "nonveg",
+    "image": "https://i.ibb.co/0209JyW/c4.png",
+    "description": "Pepper Barbecue Chicken",
+    "supplier": "Kamal"
+  }
+  
+]
+
