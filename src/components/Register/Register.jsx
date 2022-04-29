@@ -43,7 +43,7 @@ const Register = () => {
     createUserWithEmailAndPassword(data.email, data.password);
   };
   return (
-    <div className="container mx-auto my-10 w-full max-w-sm">
+    <div className="form-container">
       <div className="form">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4">

@@ -22,7 +22,7 @@ const Login = () => {
   const navigate = useNavigate()
   useEffect(() => {
     if (error) {
-      toast("abc");
+      toast("Your email or password are not correct. Please try again");
       navigate("/login");
     }
   }, [error, navigate]);
@@ -41,7 +41,7 @@ const Login = () => {
     signInWithEmailAndPassword(data.email, data.password)
   };
   return (
-    <div className="container mx-auto my-10 w-full max-w-sm">
+    <div className="form-container">
       <div className="form">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4">

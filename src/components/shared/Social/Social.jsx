@@ -7,7 +7,7 @@ import {
 import { BsFacebook, BsGithub, BsGoogle } from "react-icons/bs";
 import auth from "../../../firebase.init.js";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Loading from "../Loading/Loading.jsx";
 
 const Social = () => {
@@ -17,8 +17,10 @@ const Social = () => {
     useSignInWithGithub(auth);
     const [signInWithFacebook, facebookUser, facebookLoading, facebookError] = useSignInWithFacebook(auth);
 
+    let navigate = useNavigate();
+    let location = useLocation();
+    let from = location.state?.from?.pathname || "/";
 
-  const navigate = useNavigate();
   useEffect(() => {
     if (googleError || githubError || facebookError) {
       toast("Your signup attemp failed. Please try again");
@@ -29,11 +31,7 @@ const Social = () => {
     return <Loading />;
   }
   if (googleUser || githubUser || facebookUser) {
-    return (
-      <div>
-        <p>Registered User: {googleUser.email}</p>
-      </div>
-    );
+    navigate(from, { replace: true });
   }
   return (
     <div className="flex items-center justify-center my-4">
