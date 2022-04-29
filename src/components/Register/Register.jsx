@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 const Register = () => {
   const navigate = useNavigate();
   const [createUserWithEmailAndPassword, user, loading, error] =
-    useCreateUserWithEmailAndPassword(auth);
+    useCreateUserWithEmailAndPassword(auth, {sendEmailVerification: true});
   const {
     register,
     watch,
@@ -51,7 +51,7 @@ const Register = () => {
               Username
             </label>
             <input
-              autoComplete="off"
+              
               {...register("userName", { required: true, maxLength: 20 })}
               className="input-field"
               id="username"
@@ -64,7 +64,7 @@ const Register = () => {
               Email
             </label>
             <input
-              autoComplete="off"
+              
               {...register("email", {
                 required: "Please enter your email address",
                 pattern: {

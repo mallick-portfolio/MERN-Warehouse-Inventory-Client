@@ -1,17 +1,44 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Social from './../../shared/Social/Social';
+import auth from './../../../firebase.init';
+import Loading from "../../shared/Loading/Loading.jsx";
+import { toast } from 'react-toastify';
 
 const Login = () => {
+  const [
+    signInWithEmailAndPassword,
+    user,
+    loading,
+    error,
+  ] = useSignInWithEmailAndPassword(auth);
   const {
     register,
     handleSubmit,
     formState: { errors, dirtyFields },
   } = useForm();
+  const navigate = useNavigate()
+  useEffect(() => {
+    if (error) {
+      toast("abc");
+      navigate("/login");
+    }
+  }, [error, navigate]);
+  if (loading) {
+    return <Loading />;
+  }
+  if (user) {
+    return (
+      <div>
+        <p>Signed In User: {user.email}</p>
+      </div>
+    );
+  }
   const onSubmit = async (data, e) => {
     e.preventDefault();
-    console.log(data);
+    signInWithEmailAndPassword(data.email, data.password)
   };
   return (
     <div className="container mx-auto my-10 w-full max-w-sm">
@@ -22,7 +49,7 @@ const Login = () => {
               Email
             </label>
             <input
-              autoComplete="off"
+              
               {...register("email", {
                 required: "Please enter your email address",
                 pattern: {
