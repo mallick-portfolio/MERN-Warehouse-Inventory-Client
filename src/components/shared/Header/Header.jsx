@@ -22,7 +22,7 @@ export default function Header() {
             <div className="relative flex items-center justify-between h-16">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
-                <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                <Disclosure.Button className="mobile-menu-btn">
                   <span className="sr-only">Open main menu</span>
                   {open ? (
                     <XIcon className="block h-6 w-6" aria-hidden="true" />
@@ -31,7 +31,7 @@ export default function Header() {
                   )}
                 </Disclosure.Button>
               </div>
-              <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+              <div className="menu-item-left">
                 <div className="flex-shrink-0 flex items-center">
                   <img
                     className="block lg:hidden h-8 w-auto"
@@ -50,7 +50,7 @@ export default function Header() {
                       <a
                         key={item.name}
                         href={item.href}
-                        className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                        className="nav-item"
                       >
                         {item.name}
                       </a>
@@ -58,9 +58,9 @@ export default function Header() {
                   </div>
                 </div>
               </div>
-              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+              <div className="menu-item-right">
                 <button
-                  className="bg-gray-800 mx-2 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                  className="login-signup-btn"
                 >
                   <Link to={"/register"} className="flex items-center">
                     <UserAddIcon className="h-6 w-6" />
@@ -68,18 +68,18 @@ export default function Header() {
                   </Link>
                 </button>
                 <button
-                  className="bg-gray-800 mr-2 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                  className="login-signup-btn"
                 >
-                  <div className="flex items-center">
+                  <Link to={"/login"} className="flex items-center">
                     <LoginIcon className="h-6 w-6" />
                     <span>Login</span>
-                  </div>
+                  </Link>
                 </button>
 
                 {/* Profile dropdown */}
                 <Menu as="div" className="ml-3 relative">
                   <div>
-                    <Menu.Button className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                    <Menu.Button className="menu-btn">
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
@@ -151,7 +151,7 @@ export default function Header() {
                   key={item.name}
                   as="a"
                   href={item.href}
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                  className="hide-show-btn"
                 >
                   {item.name}
                 </Disclosure.Button>

@@ -4,10 +4,13 @@ import Header from './components/shared/Header/Header';
 import Home from './components/pages/Home/Home';
 import Register from './components/Register/Register.jsx';
 import Login from './components/pages/Login/Login';
-
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 function App() {
+  
   return (
     <div>
+      <ToastContainer />
       <Header />
       <Routes>
         <Route path='/' element={<Home />} />

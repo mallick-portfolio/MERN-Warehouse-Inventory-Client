@@ -1,9 +1,15 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Social from "../shared/Social/Social.jsx";
-
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import auth from "./../../firebase.init";
+import Loading from "../shared/Loading/Loading.jsx";
+import { toast } from "react-toastify";
 const Register = () => {
+  const navigate = useNavigate();
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
   const {
     register,
     watch,
@@ -13,9 +19,28 @@ const Register = () => {
   const password = useRef({});
 
   password.current = watch("password", "");
+
+  useEffect(() => {
+    if (error) {
+      toast("Your Email Already exist");
+      navigate("/register");
+    }
+  }, [error, navigate]);
+  let load;
+  if (loading) {
+    load = <Loading />
+    return load;
+  }
+  if (user) {
+    return (
+      <div>
+        <p>Registered User: {user.email}</p>
+      </div>
+    );
+  }
   const onSubmit = async (data, e) => {
     e.preventDefault();
-    console.log(data);
+    createUserWithEmailAndPassword(data.email, data.password);
   };
   return (
     <div className="container mx-auto my-10 w-full max-w-sm">
