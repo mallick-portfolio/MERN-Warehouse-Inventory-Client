@@ -29,11 +29,21 @@ body {
   }
 }
 
-
-
 /* custom utilities */
-@layer utilities{
+@layer utilities {
   .form {
     @apply bg-white shadow-lg rounded px-8 pt-6 pb-8 mb-4;
+  }
+  .google-btn {
+    @apply text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-full text-lg px-4 py-4 text-center inline-flex items-center mr-2 mb-2;
+  }
+  .github-btn {
+    @apply text-white bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-full text-lg px-4 py-4 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 mb-2;
+  }
+  .facebook-btn {
+    @apply text-white bg-[#3b5998] hover:bg-[#3b5998]/90 focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 font-medium rounded-full text-lg px-4 py-4 text-center inline-flex items-center  mr-2 mb-2;
+  }
+  .exist-account {
+    @apply inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800
   }
 }
