@@ -4,7 +4,7 @@ import auth from './../../../firebase.init';
 import Loading from "../Loading/Loading.jsx";
 
 function ProtectedRoute({ children }) {
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   let location = useLocation();
   if(loading){
     return <Loading />

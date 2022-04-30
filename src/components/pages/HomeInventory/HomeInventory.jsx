@@ -7,7 +7,7 @@ const HomeInventory = () => {
   return (
     <div className="product-container">
       {porducts.slice(0, 6).map((product) => (
-        <Product key={product.id} product={product} />
+        <Product key={product._id} product={product} />
       ))}
     </div>
   );

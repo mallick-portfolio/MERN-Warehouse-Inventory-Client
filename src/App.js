@@ -9,6 +9,7 @@ import { ToastContainer } from "react-toastify";
 import PageNotFound from "./components/pages/PageNotFound/PageNotFound.jsx";
 import ProtectedRoute from "./components/shared/Protected/ProtectedRoute.jsx";
 import ProductDetails from "./components/shared/ProductDetails/ProductDetails.jsx";
+import Footer from "./components/pages/Footer/Footer.jsx";
 function App() {
   return (
     <div>
@@ -30,6 +31,7 @@ function App() {
         {/* 404 page route/ Page not found route */}
         <Route path="*" element={<PageNotFound />} />
       </Routes>
+      <Footer />
     </div>
   );
 }

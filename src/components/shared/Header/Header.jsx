@@ -12,9 +12,9 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "./../../../firebase.init";
 const navigation = [
   { name: "Home", href: "/", current: true },
-  { name: "Team", href: "#", current: false },
-  { name: "Projects", href: "#", current: false },
-  { name: "Calendar", href: "#", current: false },
+  { name: "Team", href: "/", current: false },
+  { name: "Projects", href: "/", current: false },
+  { name: "Calendar", href: "/", current: false },
 ];
 
 function classNames(...classes) {
@@ -62,9 +62,9 @@ export default function Header() {
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
-                      <a key={item.name} href={item.href} className="nav-item">
+                      <Link key={item.name} to={item.href} className="nav-item">
                         {item.name}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -157,13 +157,8 @@ export default function Header() {
           <Disclosure.Panel className="sm:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1">
               {navigation.map((item) => (
-                <Disclosure.Button
-                  key={item.name}
-                  as="a"
-                  href={item.href}
-                  className="hide-show-btn"
-                >
-                  {item.name}
+                <Disclosure.Button key={item.name} className="hide-show-btn">
+                  <Link to={item.href}>{item.name}</Link>
                 </Disclosure.Button>
               ))}
             </div>

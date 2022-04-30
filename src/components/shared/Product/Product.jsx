@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Product = ({ product }) => {
-  const { name, description, image, id, price, quantity, supplier } = product;
+  const { name, description, image, _id, price, quantity, supplier } = product;
   return (
     <div className="max-w-sm bg-white rounded-lg shadow-md">
       <img className="p-8 rounded-t-lg" src={image} alt="" />
@@ -32,7 +32,7 @@ const Product = ({ product }) => {
           {description.length > 50 ? description.slice(0, 50) : description}
         </div>
         <div className="flex justify-center items-center">
-          <Link to={`/inventory/${id}`} className="addToCart-btn">
+          <Link to={`/inventory/${_id}`} className="addToCart-btn">
             Update
           </Link>
         </div>
