@@ -18,6 +18,9 @@ body {
 @tailwind utilities;
 
 @layer components {
+  .managein-btn {
+    @apply inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out;
+  }
   .form-container {
     @apply container mx-auto my-10 w-full max-w-lg
   }
@@ -75,5 +78,11 @@ body {
   }
   .menu-btn {
     @apply bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white;
+  }
+  .table-content {
+    @apply border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700;
+  }
+  .table-th {
+    @apply px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap;
   }
 }

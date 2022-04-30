@@ -3,13 +3,52 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const ProductDetails = () => {
+
+
+
   const { id } = useParams();
 
   const [product, setProduct] = useState([]);
   const { name, description, image, price, quantity, supplier, sold } = product;
-  const [qty, setQty] = useState(quantity)
-  console.log(qty)
+
+
+
+  useEffect(() => {
+    const loadProduct = async () => {
+      const res = await axios.get(`http://localhost:5000/inventory/${id}`);
+      const result = res.data;
+      setProduct(result);
+    };
+    loadProduct();
+  }, [id]);
+
+
+
   
+  const handleDecrement = () => {
+    product.quantity = parseInt(quantity) - 1;
+    fetch(`http://localhost:5000/inventory/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(product),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        const loadProduct = async () => {
+          const res = await axios.get(`http://localhost:5000/inventory/${id}`);
+          const result = res.data;
+          setProduct(result);
+        };
+        loadProduct();
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
+  
+
 
   const updateQuantity = (e) => {
     e.preventDefault();
@@ -25,7 +64,6 @@ const ProductDetails = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         const loadProduct = async () => {
           const res = await axios.get(`http://localhost:5000/inventory/${id}`);
           const result = res.data;
@@ -39,15 +77,6 @@ const ProductDetails = () => {
 
     e.target.reset();
   };
-
-  useEffect(() => {
-    const loadProduct = async () => {
-      const res = await axios.get(`http://localhost:5000/inventory/${id}`);
-      const result = res.data;
-      setProduct(result);
-    };
-    loadProduct();
-  }, [id]);
 
   return (
     <section className="text-gray-700 body-font overflow-hidden bg-white">
@@ -88,7 +117,7 @@ const ProductDetails = () => {
               </span>
             </div>
             <div className="flex justify-center items-center">
-              <button onClick={()=>setQty(quantity - 1)} className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">
+              <button onClick={handleDecrement} className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">
                 Delivered
               </button>
             </div>
