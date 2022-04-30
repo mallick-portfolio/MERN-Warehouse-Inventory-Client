@@ -11,12 +11,17 @@ const Inventory = () => {
   useEffect(() => {
     // eslint-disable-next-line eqeqeq
     const userProduct = allproducts.filter(
+      // eslint-disable-next-line eqeqeq
       (product) => product.email == user.email
     );
     setProducts(userProduct);
   }, [allproducts, user.email]);
 
   const handleDelete = (id) => {
+    const agree = window.confirm('Are you want to delete')
+    if(!agree){
+      return;
+    }
     console.log(id);
     fetch(`http://localhost:5000/product/${id}`, {
       method: "DELETE",
@@ -27,6 +32,7 @@ const Inventory = () => {
           const res = await axios.get("http://localhost:5000/products");
           const result = res.data;
           const userProduct = result.filter(
+            // eslint-disable-next-line eqeqeq
             (product) => product.email == user.email
           );
           setProducts(userProduct);

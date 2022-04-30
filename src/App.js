@@ -12,6 +12,7 @@ import ProductDetails from "./components/shared/ProductDetails/ProductDetails.js
 import Footer from "./components/pages/Footer/Footer.jsx";
 import Inventory from "./components/pages/Inventory/Inventory.jsx";
 import AddProduct from "./components/pages/AddProduct/AddProduct.jsx";
+import Blogs from "./components/pages/Blogs/Blogs.jsx";
 function App() {
   return (
     <div>
@@ -19,6 +20,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/blogs" element={<Blogs />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/product/add" element={<AddProduct />} />

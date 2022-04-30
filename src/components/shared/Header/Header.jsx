@@ -12,7 +12,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "./../../../firebase.init";
 const navigation = [
   { name: "Home", href: "/", current: true },
-  { name: "Team", href: "/", current: false },
+  { name: "Blogs", href: "/blogs", current: false },
   { name: "Projects", href: "/", current: false },
   { name: "Calendar", href: "/", current: false },
 ];
@@ -112,28 +112,28 @@ export default function Header() {
                       <Menu.Items className="origin-top-right z-10 absolute right-1 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                         <Menu.Item>
                           {({ active }) => (
-                            <a
-                              href="/"
+                            <Link
+                              to="/manage-inventory"
                               className={classNames(
                                 active ? "bg-gray-100" : "",
                                 "block px-4 py-2 text-sm text-gray-700"
                               )}
                             >
-                              Your Profile
-                            </a>
+                              My items
+                            </Link>
                           )}
                         </Menu.Item>
                         <Menu.Item>
                           {({ active }) => (
-                            <a
-                              href="/"
+                            <Link
+                              to="/product/add"
                               className={classNames(
                                 active ? "bg-gray-100" : "",
                                 "block px-4 py-2 text-sm text-gray-700"
                               )}
                             >
-                              Settings
-                            </a>
+                              Add Item
+                            </Link>
                           )}
                         </Menu.Item>
                         <Menu.Item>
@@ -142,7 +142,7 @@ export default function Header() {
                               onClick={handleLogOut}
                               className="px-4 py-2 w-auto text-sm text-gray-700"
                             >
-                              Sign out
+                              Logout
                             </button>
                           )}
                         </Menu.Item>
