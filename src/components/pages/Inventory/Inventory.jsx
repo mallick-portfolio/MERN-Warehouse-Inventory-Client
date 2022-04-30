@@ -1,28 +1,45 @@
 import React, { useEffect, useState } from "react";
 import useProducts from "../../../hooks/useProducts.js";
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init.js";
 import { Link } from "react-router-dom";
+import axios from "axios";
 const Inventory = () => {
   const [user] = useAuthState(auth);
   const [allproducts] = useProducts();
-  const [products, setProducts] = useState([])
-  useEffect(()=> {
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
     // eslint-disable-next-line eqeqeq
-    const userProduct = allproducts.filter(product => product.email == user.email)
-    setProducts(userProduct)
-  },[allproducts, user.email])
+    const userProduct = allproducts.filter(
+      (product) => product.email == user.email
+    );
+    setProducts(userProduct);
+  }, [allproducts, user.email]);
 
-
+  const handleDelete = (id) => {
+    console.log(id);
+    fetch(`http://localhost:5000/product/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json()) // or res.json()
+      .then((data) => {
+        const loadProduct = async () => {
+          const res = await axios.get("http://localhost:5000/products");
+          const result = res.data;
+          const userProduct = result.filter(
+            (product) => product.email == user.email
+          );
+          setProducts(userProduct);
+        };
+        loadProduct();
+      });
+  };
 
   return (
     <div className="relative container mx-auto m-10 overflow-x-auto shadow-md sm:rounded-lg">
       <div className="mb-2">
-        <button
-          type="button"
-          className="managein-btn"
-        >
-         <Link to={"/product/add"}>Add new item</Link>
+        <button type="button" className="managein-btn">
+          <Link to={"/product/add"}>Add new item</Link>
         </button>
       </div>
       <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -55,12 +72,12 @@ const Inventory = () => {
               <td className="px-6 py-4">{product.quantity}</td>
               <td className="px-6 py-4">{product.supplier}</td>
               <td className="px-6 py-4 text-right">
-                <a
-                  href="/"
+                <button
+                  onClick={() => handleDelete(product._id)}
                   className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                 >
                   Delete
-                </a>
+                </button>
               </td>
             </tr>
           ))}
