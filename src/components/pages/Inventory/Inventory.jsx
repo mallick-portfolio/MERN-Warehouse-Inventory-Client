@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import useProducts from "../../../hooks/useProducts.js";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init.js";
 import { Link } from "react-router-dom";
