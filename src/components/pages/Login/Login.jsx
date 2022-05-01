@@ -1,25 +1,26 @@
 import React, { useEffect } from "react";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
-import Social from './../../shared/Social/Social';
-import auth from './../../../firebase.init';
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import Social from "./../../shared/Social/Social";
+import auth from "./../../../firebase.init";
 import Loading from "../../shared/Loading/Loading.jsx";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
+import axios from "axios";
 
 const Login = () => {
-  const [
-    signInWithEmailAndPassword,
-    user,
-    loading,
-    error,
-  ] = useSignInWithEmailAndPassword(auth);
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
   const {
     register,
     handleSubmit,
     formState: { errors, dirtyFields },
   } = useForm();
-  const navigate = useNavigate()
+
+  let navigate = useNavigate();
+  let location = useLocation();
+  let from = location.state?.from?.pathname || "/";
+
   useEffect(() => {
     if (error) {
       toast("Your email or password are not correct. Please try again");
@@ -30,15 +31,18 @@ const Login = () => {
     return <Loading />;
   }
   if (user) {
-    return (
-      <div>
-        <p>Signed In User: {user.email}</p>
-      </div>
-    );
+    // navigate(from, { replace: true });
   }
   const onSubmit = async (data, e) => {
     e.preventDefault();
-    signInWithEmailAndPassword(data.email, data.password)
+    await signInWithEmailAndPassword(data.email, data.password);
+    const email = data.email;
+
+    await axios.post("http://localhost:5000/login", { email }).then((res) => {
+      console.log(res.data)
+      localStorage.setItem("accessToken", res.data);
+      navigate(from, { replace: true });
+    });
   };
   return (
     <div className="form-container">
@@ -49,7 +53,6 @@ const Login = () => {
               Email
             </label>
             <input
-              
               {...register("email", {
                 required: "Please enter your email address",
                 pattern: {

@@ -6,20 +6,25 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 const Inventory = () => {
   const [user] = useAuthState(auth);
-  const [allproducts] = useProducts();
   const [products, setProducts] = useState([]);
+
+  const url = `http://localhost:5000/userProduct?email=${user.email}`;
   useEffect(() => {
-    // eslint-disable-next-line eqeqeq
-    const userProduct = allproducts.filter(
-      // eslint-disable-next-line eqeqeq
-      (product) => product.email == user.email
-    );
-    setProducts(userProduct);
-  }, [allproducts, user.email]);
+    const loadProduct = async () => {
+      const res = await axios.get(url, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      });
+      const result = res.data;
+      setProducts(result);
+    };
+    loadProduct();
+  }, [url, user.email]);
 
   const handleDelete = (id) => {
-    const agree = window.confirm('Are you want to delete')
-    if(!agree){
+    const agree = window.confirm("Are you want to delete");
+    if (!agree) {
       return;
     }
     console.log(id);

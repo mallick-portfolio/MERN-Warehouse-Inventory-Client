@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Social from "../shared/Social/Social.jsx";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "./../../firebase.init";
@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 const Register = () => {
   const navigate = useNavigate();
   const [createUserWithEmailAndPassword, user, loading, error] =
-    useCreateUserWithEmailAndPassword(auth, {sendEmailVerification: true});
+    useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
   const {
     register,
     watch,
@@ -20,6 +20,9 @@ const Register = () => {
 
   password.current = watch("password", "");
 
+  let location = useLocation();
+  let from = location.state?.from?.pathname || "/";
+
   useEffect(() => {
     if (error) {
       toast("Your Email Already exist");
@@ -28,15 +31,11 @@ const Register = () => {
   }, [error, navigate]);
   let load;
   if (loading) {
-    load = <Loading />
+    load = <Loading />;
     return load;
   }
   if (user) {
-    return (
-      <div>
-        <p>Registered User: {user.email}</p>
-      </div>
-    );
+    navigate(from, { replace: true });
   }
   const onSubmit = async (data, e) => {
     e.preventDefault();
@@ -51,7 +50,6 @@ const Register = () => {
               Username
             </label>
             <input
-              
               {...register("userName", { required: true, maxLength: 20 })}
               className="input-field"
               id="username"
@@ -64,7 +62,6 @@ const Register = () => {
               Email
             </label>
             <input
-              
               {...register("email", {
                 required: "Please enter your email address",
                 pattern: {
