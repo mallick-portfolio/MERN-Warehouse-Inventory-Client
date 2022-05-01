@@ -6,8 +6,11 @@ import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "./../../firebase.init";
 import Loading from "../shared/Loading/Loading.jsx";
 import { toast } from "react-toastify";
+import { signOut } from "firebase/auth";
 const Register = () => {
-  const navigate = useNavigate();
+  let navigate = useNavigate();
+  let location = useLocation();
+  let from = location.state?.from?.pathname || "/";
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
   const {
@@ -19,9 +22,6 @@ const Register = () => {
   const password = useRef({});
 
   password.current = watch("password", "");
-
-  let location = useLocation();
-  let from = location.state?.from?.pathname || "/";
 
   useEffect(() => {
     if (error) {
@@ -35,11 +35,12 @@ const Register = () => {
     return load;
   }
   if (user) {
-    navigate(from, { replace: true });
+    signOut(auth)
+    navigate('/login');
   }
   const onSubmit = async (data, e) => {
     e.preventDefault();
-    createUserWithEmailAndPassword(data.email, data.password);
+   await createUserWithEmailAndPassword(data.email, data.password);
   };
   return (
     <div className="form-container">
