@@ -1,6 +1,6 @@
 # Tour Lover Pro
 
-This is my project live link [Tlipkart](https://tour-firebase-auth.web.app/).
+This is my project live link [Tlipkart](https://warehouse-inventory-95eff.firebaseapp.com/).
 
 ## General Info
 

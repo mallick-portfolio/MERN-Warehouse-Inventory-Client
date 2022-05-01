@@ -7,7 +7,7 @@ const Inventory = () => {
   const [user] = useAuthState(auth);
   const [products, setProducts] = useState([]);
 
-  const url = `http://localhost:5000/userProduct?email=${user.email}`;
+  const url = `https://fathomless-dawn-54190.herokuapp.com/userProduct?email=${user.email}`;
   useEffect(() => {
     const loadProduct = async () => {
       const res = await axios.get(url, {
@@ -27,13 +27,13 @@ const Inventory = () => {
       return;
     }
     console.log(id);
-    fetch(`http://localhost:5000/product/${id}`, {
+    fetch(`https://fathomless-dawn-54190.herokuapp.com/product/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json()) // or res.json()
       .then((data) => {
         const loadProduct = async () => {
-          const res = await axios.get("http://localhost:5000/products");
+          const res = await axios.get("https://fathomless-dawn-54190.herokuapp.com/products");
           const result = res.data;
           const userProduct = result.filter(
             // eslint-disable-next-line eqeqeq

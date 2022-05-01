@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Social from "../shared/Social/Social.jsx";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "./../../firebase.init";
@@ -9,8 +9,6 @@ import { toast } from "react-toastify";
 import { signOut } from "firebase/auth";
 const Register = () => {
   let navigate = useNavigate();
-  let location = useLocation();
-  let from = location.state?.from?.pathname || "/";
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
   const {
@@ -24,20 +22,22 @@ const Register = () => {
   password.current = watch("password", "");
 
   useEffect(() => {
+    if (user) {
+      signOut(auth)
+      navigate('/login');
+      toast('Register Successfull, Please login to access')
+    }
     if (error) {
       toast("Your Email Already exist");
       navigate("/register");
     }
-  }, [error, navigate]);
+  }, [error, navigate, user]);
   let load;
   if (loading) {
     load = <Loading />;
     return load;
   }
-  if (user) {
-    signOut(auth)
-    navigate('/login');
-  }
+  
   const onSubmit = async (data, e) => {
     e.preventDefault();
    await createUserWithEmailAndPassword(data.email, data.password);

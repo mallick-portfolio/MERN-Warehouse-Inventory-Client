@@ -38,7 +38,7 @@ const Login = () => {
     await signInWithEmailAndPassword(data.email, data.password);
     const email = data.email;
 
-    await axios.post("http://localhost:5000/login", { email }).then((res) => {
+    await axios.post("https://fathomless-dawn-54190.herokuapp.com/login", { email }).then((res) => {
       console.log(res.data)
       localStorage.setItem("accessToken", res.data);
       navigate(from, { replace: true });
