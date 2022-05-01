@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -10,24 +11,24 @@ const Footer = () => {
           </h2>
           <ul className="text-gray-300">
             <li className="mb-4">
-              <a href="/" className=" hover:underline">
-                About
-              </a>
+              <Link to="/" className=" hover:underline">
+                Home
+              </Link>
             </li>
             <li className="mb-4">
-              <a href="/" className="hover:underline">
-                Careers
-              </a>
+              <Link to="/blogs" className="hover:underline">
+                Blogs
+              </Link>
             </li>
             <li className="mb-4">
-              <a href="/" className="hover:underline">
+              <Link to="/" className="hover:underline">
                 Brand Center
-              </a>
+              </Link>
             </li>
             <li className="mb-4">
-              <a href="/" className="hover:underline">
-                Blog
-              </a>
+              <Link to="/" className="hover:underline">
+                Contact Us
+              </Link>
             </li>
           </ul>
         </div>
@@ -37,19 +38,19 @@ const Footer = () => {
           </h2>
           <ul className="text-gray-300">
             <li className="mb-4">
-              <a href="/" className="hover:underline">
+              <Link to="/" className="hover:underline">
                 Discord Server
-              </a>
+              </Link>
             </li>
             <li className="mb-4">
-              <a href="/" className="hover:underline">
+              <Link to="/" className="hover:underline">
                 Twitter
-              </a>
+              </Link>
             </li>
             <li className="mb-4">
-              <a href="/" className="hover:underline">
+              <Link to="/" className="hover:underline">
                 Facebook
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -59,46 +60,41 @@ const Footer = () => {
           </h2>
           <ul className="text-gray-300">
             <li className="mb-4">
-              <a href="/" className="hover:underline">
+              <Link to="/" className="hover:underline">
                 Privacy Policy
-              </a>
+              </Link>
             </li>
             <li className="mb-4">
-              <a href="/" className="hover:underline">
+              <Link to="/" className="hover:underline">
                 Licensing
-              </a>
+              </Link>
             </li>
             <li className="mb-4">
-              <a href="/" className="hover:underline">
+              <Link to="/" className="hover:underline">
                 Terms &amp; Conditions
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
         <div>
           <h2 className="mb-6 text-sm font-semibold text-gray-400 uppercase">
-            Download
+            Contact
           </h2>
           <ul className="text-gray-300">
             <li className="mb-4">
-              <a href="/" className="hover:underline">
-                iOS
-              </a>
+              <Link to="/" className="hover:underline">
+                phone: 017xxxxxxx
+              </Link>
             </li>
             <li className="mb-4">
-              <a href="/" className="hover:underline">
-                Android
-              </a>
+              <Link to="/" className="hover:underline">
+                email: example@gmail.com
+              </Link>
             </li>
             <li className="mb-4">
-              <a href="/" className="hover:underline">
-                Windows
-              </a>
-            </li>
-            <li className="mb-4">
-              <a href="/" className="hover:underline">
-                MacOS
-              </a>
+              <Link to="/" className="hover:underline">
+                House: Monirampur, Jashore, Bangladesh
+              </Link>
             </li>
           </ul>
         </div>
@@ -109,7 +105,7 @@ const Footer = () => {
             © 2022 <span>Tamal Mallick</span>. All Rights Reserved.
           </span>
           <div className="flex mt-4 space-x-6 sm:justify-center md:mt-0">
-            <a href="/" className="text-gray-400 hover:text-white">
+            <Link to="/" className="text-gray-400 hover:text-white">
               <svg
                 className="w-5 h-5"
                 fill="currentColor"
@@ -122,8 +118,8 @@ const Footer = () => {
                   clipRule="evenodd"
                 ></path>
               </svg>
-            </a>
-            <a href="/" className="text-gray-400 hover:text-white">
+            </Link>
+            <Link to="/" className="text-gray-400 hover:text-white">
               <svg
                 className="w-5 h-5"
                 fill="currentColor"
@@ -136,8 +132,8 @@ const Footer = () => {
                   clipRule="evenodd"
                 ></path>
               </svg>
-            </a>
-            <a href="/" className="text-gray-400 hover:text-white">
+            </Link>
+            <Link to="/" className="text-gray-400 hover:text-white">
               <svg
                 className="w-5 h-5"
                 fill="currentColor"
@@ -146,8 +142,8 @@ const Footer = () => {
               >
                 <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
               </svg>
-            </a>
-            <a href="/" className="text-gray-400 hover:text-white">
+            </Link>
+            <Link to="/" className="text-gray-400 hover:text-white">
               <svg
                 className="w-5 h-5"
                 fill="currentColor"
@@ -160,8 +156,8 @@ const Footer = () => {
                   clipRule="evenodd"
                 ></path>
               </svg>
-            </a>
-            <a href="/" className="text-gray-400 hover:text-white">
+            </Link>
+            <Link to="/" className="text-gray-400 hover:text-white">
               <svg
                 className="w-5 h-5"
                 fill="currentColor"
@@ -174,7 +170,7 @@ const Footer = () => {
                   clipRule="evenodd"
                 ></path>
               </svg>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

@@ -5,7 +5,7 @@ const Product = ({ product }) => {
   const { name, description, image, _id, price, quantity, supplier } = product;
   return (
     <div className="max-w-sm bg-white rounded-lg shadow-md">
-      <img className="p-8 rounded-t-lg" src={image} alt="" />
+      <img className="p-8 rounded-t-lg h-60  w-screen" src={image} alt="" />
       <div className="px-5 pb-5">
         <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
           {name}
