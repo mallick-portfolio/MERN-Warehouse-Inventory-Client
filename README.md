@@ -1,4 +1,4 @@
-# Tour Lover Pro
+# Tlipkart
 
 This is my project live link [Tlipkart](https://warehouse-inventory-95eff.firebaseapp.com/).
 
@@ -26,4 +26,4 @@ A list of technologies used within the project:
 * This site is secure ! that's why user can store product without information lost.
 * This site's  also design and develop for disability's man.
 * We provide best service for store fruits.
-Tour Lover Pro
+Tlipkart
