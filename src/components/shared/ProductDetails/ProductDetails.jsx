@@ -15,7 +15,7 @@ const ProductDetails = () => {
 
   useEffect(() => {
     const loadProduct = async () => {
-      const res = await axios.get(`http://localhost:5000/inventory/${id}`);
+      const res = await axios.get(`https://fathomless-dawn-54190.herokuapp.com/inventory/${id}`);
       const result = res.data;
       setProduct(result);
     };
@@ -27,7 +27,7 @@ const ProductDetails = () => {
   
   const handleDecrement = () => {
     product.quantity = parseInt(quantity) - 1;
-    fetch(`http://localhost:5000/inventory/${id}`, {
+    fetch(`https://fathomless-dawn-54190.herokuapp.com/inventory/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -37,7 +37,7 @@ const ProductDetails = () => {
       .then((response) => response.json())
       .then((data) => {
         const loadProduct = async () => {
-          const res = await axios.get(`http://localhost:5000/inventory/${id}`);
+          const res = await axios.get(`https://fathomless-dawn-54190.herokuapp.com/inventory/${id}`);
           const result = res.data;
           setProduct(result);
         };
@@ -55,7 +55,7 @@ const ProductDetails = () => {
     const productQuantity = e.target.quantity.value;
 
     product.quantity = parseInt(quantity) + parseInt(productQuantity);
-    fetch(`http://localhost:5000/inventory/${id}`, {
+    fetch(`https://fathomless-dawn-54190.herokuapp.com/inventory/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -65,7 +65,7 @@ const ProductDetails = () => {
       .then((response) => response.json())
       .then((data) => {
         const loadProduct = async () => {
-          const res = await axios.get(`http://localhost:5000/inventory/${id}`);
+          const res = await axios.get(`https://fathomless-dawn-54190.herokuapp.com/inventory/${id}`);
           const result = res.data;
           setProduct(result);
         };

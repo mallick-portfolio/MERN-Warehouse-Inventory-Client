@@ -19,7 +19,7 @@ const AddProduct = () => {
   const onSubmit = (data, e) => {
     data.email = user.email
     e.preventDefault();
-    fetch('http://localhost:5000/product', {
+    fetch('https://fathomless-dawn-54190.herokuapp.com/product', {
       method: "POST",
       headers: {
         'authorization': `Bearer ${localStorage.getItem('accessToken')}`,

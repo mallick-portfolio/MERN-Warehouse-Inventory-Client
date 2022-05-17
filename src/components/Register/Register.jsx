@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import Social from "../shared/Social/Social.jsx";
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from "react-firebase-hooks/auth";
 import auth from "./../../firebase.init";
 import Loading from "../shared/Loading/Loading.jsx";
 import { toast } from "react-toastify";
@@ -11,6 +11,7 @@ const Register = () => {
   let navigate = useNavigate();
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+    const [updateProfile, updating,] = useUpdateProfile(auth);
   const {
     register,
     watch,
@@ -33,7 +34,7 @@ const Register = () => {
     }
   }, [error, navigate, user]);
   let load;
-  if (loading) {
+  if (loading || updating) {
     load = <Loading />;
     return load;
   }
@@ -41,6 +42,7 @@ const Register = () => {
   const onSubmit = async (data, e) => {
     e.preventDefault();
    await createUserWithEmailAndPassword(data.email, data.password);
+   await updateProfile({ displayName: data.userName });
   };
   return (
     <div className="form-container">
