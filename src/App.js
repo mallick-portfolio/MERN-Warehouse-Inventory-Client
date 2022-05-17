@@ -14,46 +14,56 @@ import Inventory from "./components/pages/Inventory/Inventory.jsx";
 import AddProduct from "./components/pages/AddProduct/AddProduct.jsx";
 import Blogs from "./components/pages/Blogs/Blogs.jsx";
 import AllProducts from "./components/pages/AllProducts/AllProducts.jsx";
+import useProducts from "./hooks/useProducts.js";
+import Loading from "./components/shared/Loading/Loading.jsx";
 function App() {
+  // eslint-disable-next-line no-unused-vars
+  const [prodcuts, setProducts, loading] = useProducts();
   return (
     <div className="overflow-hidden">
-      <ToastContainer />
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/blogs" element={<Blogs />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/product/add" element={<AddProduct />} />
-        <Route
-          path="/manage-inventory"
-          element={
-            <ProtectedRoute>
-              <Inventory />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/inventory/:id"
-          element={
-            <ProtectedRoute>
-              <ProductDetails />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/all-items"
-          element={
-            <ProtectedRoute>
-              <AllProducts />
-            </ProtectedRoute>
-          }
-        />
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          <ToastContainer />
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/blogs" element={<Blogs />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/product/add" element={<AddProduct />} />
+            <Route
+              path="/manage-inventory"
+              element={
+                <ProtectedRoute>
+                  <Inventory />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/inventory/:id"
+              element={
+                <ProtectedRoute>
+                  <ProductDetails />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/all-items"
+              element={
+                <ProtectedRoute>
+                  <AllProducts />
+                </ProtectedRoute>
+              }
+            />
 
-        {/* 404 page route/ Page not found route */}
-        <Route path="*" element={<PageNotFound />} />
-      </Routes>
-      <Footer />
+            {/* 404 page route/ Page not found route */}
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
+          <Footer />
+        </>
+      )}
     </div>
   );
 }
