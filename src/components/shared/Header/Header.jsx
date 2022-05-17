@@ -45,7 +45,7 @@ export default function Header() {
                 </Disclosure.Button>
               </div>
               <div className="menu-item-left">
-                <div className="flex-shrink-0 cursor-pointer flex items-center text-red-400 font-semibold text-3xl hidden sm:block ">
+                <div className="flex-shrink-0 cursor-pointer items-center text-red-400 font-semibold text-3xl hidden sm:block ">
                   <Link to={"/"}>Tlipkart</Link>
                 </div>
                 <div className="hidden sm:block sm:ml-6">
@@ -99,6 +99,19 @@ export default function Header() {
                       leaveTo="transform opacity-0 scale-95"
                     >
                       <Menu.Items className="origin-top-right z-10 absolute right-1 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                        <Menu.Item>
+                          {({ active }) => (
+                            <Link
+                              to="/all-items"
+                              className={classNames(
+                                active ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700"
+                              )}
+                            >
+                              All items
+                            </Link>
+                          )}
+                        </Menu.Item>
                         <Menu.Item>
                           {({ active }) => (
                             <Link

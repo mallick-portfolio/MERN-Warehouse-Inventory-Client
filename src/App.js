@@ -13,6 +13,7 @@ import Footer from "./components/pages/Footer/Footer.jsx";
 import Inventory from "./components/pages/Inventory/Inventory.jsx";
 import AddProduct from "./components/pages/AddProduct/AddProduct.jsx";
 import Blogs from "./components/pages/Blogs/Blogs.jsx";
+import AllProducts from "./components/pages/AllProducts/AllProducts.jsx";
 function App() {
   return (
     <div>
@@ -37,6 +38,14 @@ function App() {
           element={
             <ProtectedRoute>
               <ProductDetails />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/all-items"
+          element={
+            <ProtectedRoute>
+              <AllProducts />
             </ProtectedRoute>
           }
         />

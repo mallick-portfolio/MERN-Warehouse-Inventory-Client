@@ -4,7 +4,7 @@ const useProducts = () => {
   const [products, setProdutcts] = useState([])
   useEffect(()=> {
     const loadProducts = async (params) => {
-      const products = await axios('https://fathomless-dawn-54190.herokuapp.com/products')
+      const products = await axios('http://localhost:5000/products')
       setProdutcts(products.data)
     }
     loadProducts()

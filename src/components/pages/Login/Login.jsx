@@ -31,14 +31,14 @@ const Login = () => {
     return <Loading />;
   }
   if (user) {
-    // navigate(from, { replace: true });
+    navigate(from, { replace: true });
   }
   const onSubmit = async (data, e) => {
     e.preventDefault();
     await signInWithEmailAndPassword(data.email, data.password);
     const email = data.email;
 
-    await axios.post("https://fathomless-dawn-54190.herokuapp.com/login", { email }).then((res) => {
+    await axios.post("http://localhost:5000/login", { email }).then((res) => {
       console.log(res.data)
       localStorage.setItem("accessToken", res.data);
       navigate(from, { replace: true });
