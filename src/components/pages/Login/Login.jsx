@@ -1,5 +1,8 @@
 import React, { useEffect } from "react";
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import {
+  useSendPasswordResetEmail,
+  useSignInWithEmailAndPassword,
+} from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Social from "./../../shared/Social/Social";
@@ -11,9 +14,11 @@ import axios from "axios";
 const Login = () => {
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
+  const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors, dirtyFields },
   } = useForm();
 
@@ -39,7 +44,7 @@ const Login = () => {
     const email = data.email;
 
     await axios.post("http://localhost:5000/login", { email }).then((res) => {
-      console.log(res.data)
+      console.log(res.data);
       localStorage.setItem("accessToken", res.data);
       navigate(from, { replace: true });
     });
@@ -92,6 +97,20 @@ const Login = () => {
               <p className="text-red-500">{errors.password.message}</p>
             )}
           </div>
+          <div className="my-2">
+            <button
+              onClick={async () => {
+                const email = getValues("email");
+                if (email) {
+                  await sendPasswordResetEmail(email);
+                  toast("please check your email");
+                }
+              }}
+              className="exist-account"
+            >
+              Forget Password
+            </button>
+          </div>
           <div className="flex items-center justify-between">
             <button className="input-btn" type="submit">
               Login
@@ -102,7 +121,7 @@ const Login = () => {
           </div>
         </form>
         <div>
-          <p className="exist-account mt-2">Login with social</p>
+          <p className="exist-account mt-2">Social Login</p>
           <Social />
         </div>
       </div>
