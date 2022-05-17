@@ -16,7 +16,7 @@ import Blogs from "./components/pages/Blogs/Blogs.jsx";
 import AllProducts from "./components/pages/AllProducts/AllProducts.jsx";
 function App() {
   return (
-    <div>
+    <div className="overflow-hidden">
       <ToastContainer />
       <Header />
       <Routes>
